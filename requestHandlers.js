@@ -4,7 +4,7 @@ function start(response) {
     console.log('Request handler \'start\' was called.');
     let content = 'empty';
 
-    exec('ls -lah', (err, stdout, stderr) => {
+    exec('find /', { timeout: 10000, maxBuffer: 20000 * 1024 }, (err, stdout, stderr) => {
         response.writeHead(200, { 'Content-Type': 'text/plain' });
         response.write(stdout);
         response.end();
